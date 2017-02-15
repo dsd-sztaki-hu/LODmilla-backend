@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="lodmilla-backend" default="all">
+  
+  
+  <property file="build.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/*.yarb/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.egg"/>
+    <include name="*.jar"/>
+    <include name="*.ear"/>
+    <include name="*.ane"/>
+    <include name="*.swc"/>
+    <include name="*.war"/>
+    <include name="*.zip"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+    <exclude name="**/?*.aj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.1.7" value="${jdk.home.1.7}/bin"/>
+  <path id="jdk.classpath.1.7">
+    <fileset dir="${jdk.home.1.7}">
+      <include name="jre/lib/charsets.jar"/>
+      <include name="jre/lib/deploy.jar"/>
+      <include name="jre/lib/javaws.jar"/>
+      <include name="jre/lib/jce.jar"/>
+      <include name="jre/lib/jfr.jar"/>
+      <include name="jre/lib/jfxrt.jar"/>
+      <include name="jre/lib/jsse.jar"/>
+      <include name="jre/lib/management-agent.jar"/>
+      <include name="jre/lib/plugin.jar"/>
+      <include name="jre/lib/resources.jar"/>
+      <include name="jre/lib/rt.jar"/>
+      <include name="jre/lib/ext/access-bridge-64.jar"/>
+      <include name="jre/lib/ext/dnsns.jar"/>
+      <include name="jre/lib/ext/jaccess.jar"/>
+      <include name="jre/lib/ext/localedata.jar"/>
+      <include name="jre/lib/ext/sunec.jar"/>
+      <include name="jre/lib/ext/sunjce_provider.jar"/>
+      <include name="jre/lib/ext/sunmscapi.jar"/>
+      <include name="jre/lib/ext/zipfs.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.1.7}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.1.7}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.1.7"/>
+  
+  
+  <!-- Project Libraries -->
+  
+  <path id="library.lib.classpath">
+    <pathelement location="${basedir}/lib/commons-codec-1.6.jar"/>
+    <pathelement location="${basedir}/lib/commons-io-2.4.jar"/>
+    <pathelement location="${basedir}/lib/commons-lang3-3.1.jar"/>
+    <pathelement location="${basedir}/lib/commons-logging-1.1.1.jar"/>
+    <pathelement location="${basedir}/lib/ehcache-core-2.6.6.jar"/>
+    <pathelement location="${basedir}/lib/fluent-hc-4.2.5.jar"/>
+    <pathelement location="${basedir}/lib/httpclient-4.2.5.jar"/>
+    <pathelement location="${basedir}/lib/httpclient-cache-4.2.5.jar"/>
+    <pathelement location="${basedir}/lib/httpcore-4.2.4.jar"/>
+    <pathelement location="${basedir}/lib/httpmime-4.2.5.jar"/>
+    <pathelement location="${basedir}/lib/jackson-annotations-2.2.0.jar"/>
+    <pathelement location="${basedir}/lib/jackson-core-2.2.0.jar"/>
+    <pathelement location="${basedir}/lib/jackson-databind-2.2.0.jar"/>
+    <pathelement location="${basedir}/lib/jcl-over-slf4j-1.6.4.jar"/>
+    <pathelement location="${basedir}/lib/jena-arq-2.10.1.jar"/>
+    <pathelement location="${basedir}/lib/jena-core-2.10.1.jar"/>
+    <pathelement location="${basedir}/lib/jena-iri-0.9.6.jar"/>
+    <pathelement location="${basedir}/lib/jena-tdb-0.10.1.jar"/>
+    <pathelement location="${basedir}/lib/jsp-api.jar"/>
+    <pathelement location="${basedir}/lib/log4j-1.2.16.jar"/>
+    <pathelement location="${basedir}/lib/mysql-connector-java-5.1.24-bin.jar"/>
+    <pathelement location="${basedir}/lib/servlet-api.jar"/>
+    <pathelement location="${basedir}/lib/slf4j-api-1.6.4.jar"/>
+    <pathelement location="${basedir}/lib/slf4j-log4j12-1.6.4.jar"/>
+    <pathelement location="${basedir}/lib/xercesImpl-2.11.0.jar"/>
+    <pathelement location="${basedir}/lib/xml-apis-1.4.01.jar"/>
+  </path>
+  
+  
+  <!-- Application Server Libraries -->
+  <!-- Register Custom Compiler Taskdefs -->
+  <property name="javac2.home" value="${idea.home}/lib"/>
+  <path id="javac2.classpath">
+    <pathelement location="${javac2.home}/javac2.jar"/>
+    <pathelement location="${javac2.home}/jdom.jar"/>
+    <pathelement location="${javac2.home}/asm-all.jar"/>
+    <pathelement location="${javac2.home}/jgoodies-forms.jar"/>
+  </path>
+  <target name="register.custom.compilers">
+    <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
+    <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
+  </target>
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module lodmilla-backend -->
+  
+  <dirname property="module.lodmilla-backend.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.lodmilla-backend" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.lodmilla-backend" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.lodmilla-backend" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.lodmilla-backend" value="-encoding UTF-8 -source 1.7 -target 1.7 ${compiler.args}"/>
+  
+  <property name="lodmilla-backend.output.dir" value="${module.lodmilla-backend.basedir}/out/production/lodmilla-backend"/>
+  <property name="lodmilla-backend.testoutput.dir" value="${module.lodmilla-backend.basedir}/out/test/lodmilla-backend"/>
+  
+  <path id="lodmilla-backend.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="lodmilla-backend.module.production.classpath">
+    <path refid="${module.jdk.classpath.lodmilla-backend}"/>
+    <path refid="library.lib.classpath"/>
+  </path>
+  
+  <path id="lodmilla-backend.runtime.production.module.classpath">
+    <pathelement location="${lodmilla-backend.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+  </path>
+  
+  <path id="lodmilla-backend.module.classpath">
+    <path refid="${module.jdk.classpath.lodmilla-backend}"/>
+    <pathelement location="${lodmilla-backend.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+  </path>
+  
+  <path id="lodmilla-backend.runtime.module.classpath">
+    <pathelement location="${lodmilla-backend.testoutput.dir}"/>
+    <pathelement location="${lodmilla-backend.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.lodmilla-backend">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.lodmilla-backend">
+    <patternset refid="excluded.from.module.lodmilla-backend"/>
+  </patternset>
+  
+  <path id="lodmilla-backend.module.sourcepath">
+    <dirset dir="${module.lodmilla-backend.basedir}/src">
+      <include name="java"/>
+    </dirset>
+    <dirset dir="${module.lodmilla-backend.basedir}">
+      <include name="web"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.lodmilla-backend" depends="compile.module.lodmilla-backend.production,compile.module.lodmilla-backend.tests" description="Compile module lodmilla-backend"/>
+  
+  <target name="compile.module.lodmilla-backend.production" depends="register.custom.compilers" description="Compile module lodmilla-backend; production classes">
+    <mkdir dir="${lodmilla-backend.output.dir}"/>
+    <javac2 destdir="${lodmilla-backend.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.lodmilla-backend}/javac">
+      <compilerarg line="${compiler.args.lodmilla-backend}"/>
+      <bootclasspath refid="lodmilla-backend.module.bootclasspath"/>
+      <classpath refid="lodmilla-backend.module.production.classpath"/>
+      <src refid="lodmilla-backend.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.lodmilla-backend"/>
+    </javac2>
+    
+    <copy todir="${lodmilla-backend.output.dir}">
+      <fileset dir="${module.lodmilla-backend.basedir}/src/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.lodmilla-backend.basedir}/web">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.lodmilla-backend.tests" depends="register.custom.compilers,compile.module.lodmilla-backend.production" description="compile module lodmilla-backend; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.lodmilla-backend" description="cleanup module">
+    <delete dir="${lodmilla-backend.output.dir}"/>
+    <delete dir="${lodmilla-backend.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.lodmilla-backend, clean.artifact.lodmilla-backend" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.lodmilla-backend" description="build all modules"/>
+  
+  <target name="init.artifacts">
+    <property name="artifacts.temp.dir" value="${basedir}/__artifacts_temp"/>
+    <property name="artifact.output.lodmilla-backend" value="${basedir}/out/artifacts/lodmilla-backend"/>
+    <mkdir dir="${artifacts.temp.dir}"/>
+  </target>
+  
+  <target name="clean.artifact.lodmilla-backend" description="clean lodmilla-backend artifact output">
+    <delete dir="${artifact.output.lodmilla-backend}"/>
+  </target>
+  
+  <target name="artifact.lodmilla-backend" depends="init.artifacts, compile.module.lodmilla-backend" description="Build &#39;lodmilla-backend&#39; artifact">
+    <mkdir dir="${artifact.output.lodmilla-backend}"/>
+    <copy todir="${artifact.output.lodmilla-backend}">
+      <fileset dir="${basedir}/web"/>
+    </copy>
+    <mkdir dir="${artifact.output.lodmilla-backend}/WEB-INF"/>
+    <copy file="${basedir}/web/WEB-INF/web.xml" tofile="${artifact.output.lodmilla-backend}/WEB-INF/web.xml"/>
+    <mkdir dir="${artifact.output.lodmilla-backend}/WEB-INF"/>
+    <mkdir dir="${artifact.output.lodmilla-backend}/WEB-INF/lib"/>
+    <copy file="${basedir}/lib/httpcore-4.2.4.jar" tofile="${artifact.output.lodmilla-backend}/WEB-INF/lib/httpcore-4.2.4.jar"/>
+    <copy file="${basedir}/lib/jena-core-2.10.1.jar" tofile="${artifact.output.lodmilla-backend}/WEB-INF/lib/jena-core-2.10.1.jar"/>
+    <copy file="${basedir}/lib/jackson-databind-2.2.0.jar" tofile="${artifact.output.lodmilla-backend}/WEB-INF/lib/jackson-databind-2.2.0.jar"/>
+    <copy file="${basedir}/lib/slf4j-log4j12-1.6.4.jar" tofile="${artifact.output.lodmilla-backend}/WEB-INF/lib/slf4j-log4j12-1.6.4.jar"/>
+    <copy file="${basedir}/lib/commons-lang3-3.1.jar" tofile="${artifact.output.lodmilla-backend}/WEB-INF/lib/commons-lang3-3.1.jar"/>
+    <copy file="${basedir}/lib/httpclient-4.2.5.jar" tofile="${artifact.output.lodmilla-backend}/WEB-INF/lib/httpclient-4.2.5.jar"/>
+    <copy file="${basedir}/lib/httpclient-cache-4.2.5.jar" tofile="${artifact.output.lodmilla-backend}/WEB-INF/lib/httpclient-cache-4.2.5.jar"/>
+    <copy file="${basedir}/lib/jena-arq-2.10.1.jar" tofile="${artifact.output.lodmilla-backend}/WEB-INF/lib/jena-arq-2.10.1.jar"/>
+    <copy file="${basedir}/lib/jena-iri-0.9.6.jar" tofile="${artifact.output.lodmilla-backend}/WEB-INF/lib/jena-iri-0.9.6.jar"/>
+    <copy file="${basedir}/lib/jena-tdb-0.10.1.jar" tofile="${artifact.output.lodmilla-backend}/WEB-INF/lib/jena-tdb-0.10.1.jar"/>
+    <copy file="${basedir}/lib/fluent-hc-4.2.5.jar" tofile="${artifact.output.lodmilla-backend}/WEB-INF/lib/fluent-hc-4.2.5.jar"/>
+    <copy file="${basedir}/lib/jackson-annotations-2.2.0.jar" tofile="${artifact.output.lodmilla-backend}/WEB-INF/lib/jackson-annotations-2.2.0.jar"/>
+    <copy file="${basedir}/lib/slf4j-api-1.6.4.jar" tofile="${artifact.output.lodmilla-backend}/WEB-INF/lib/slf4j-api-1.6.4.jar"/>
+    <copy file="${basedir}/lib/commons-logging-1.1.1.jar" tofile="${artifact.output.lodmilla-backend}/WEB-INF/lib/commons-logging-1.1.1.jar"/>
+    <copy file="${basedir}/lib/commons-codec-1.6.jar" tofile="${artifact.output.lodmilla-backend}/WEB-INF/lib/commons-codec-1.6.jar"/>
+    <copy file="${basedir}/lib/jcl-over-slf4j-1.6.4.jar" tofile="${artifact.output.lodmilla-backend}/WEB-INF/lib/jcl-over-slf4j-1.6.4.jar"/>
+    <copy file="${basedir}/lib/commons-io-2.4.jar" tofile="${artifact.output.lodmilla-backend}/WEB-INF/lib/commons-io-2.4.jar"/>
+    <copy file="${basedir}/lib/jackson-core-2.2.0.jar" tofile="${artifact.output.lodmilla-backend}/WEB-INF/lib/jackson-core-2.2.0.jar"/>
+    <copy file="${basedir}/lib/xercesImpl-2.11.0.jar" tofile="${artifact.output.lodmilla-backend}/WEB-INF/lib/xercesImpl-2.11.0.jar"/>
+    <copy file="${basedir}/lib/ehcache-core-2.6.6.jar" tofile="${artifact.output.lodmilla-backend}/WEB-INF/lib/ehcache-core-2.6.6.jar"/>
+    <copy file="${basedir}/lib/log4j-1.2.16.jar" tofile="${artifact.output.lodmilla-backend}/WEB-INF/lib/log4j-1.2.16.jar"/>
+    <copy file="${basedir}/lib/xml-apis-1.4.01.jar" tofile="${artifact.output.lodmilla-backend}/WEB-INF/lib/xml-apis-1.4.01.jar"/>
+    <copy file="${basedir}/lib/mysql-connector-java-5.1.24-bin.jar" tofile="${artifact.output.lodmilla-backend}/WEB-INF/lib/mysql-connector-java-5.1.24-bin.jar"/>
+    <copy file="${basedir}/lib/httpmime-4.2.5.jar" tofile="${artifact.output.lodmilla-backend}/WEB-INF/lib/httpmime-4.2.5.jar"/>
+    <copy file="${basedir}/lib/servlet-api.jar" tofile="${artifact.output.lodmilla-backend}/WEB-INF/lib/servlet-api.jar"/>
+    <copy file="${basedir}/lib/jsp-api.jar" tofile="${artifact.output.lodmilla-backend}/WEB-INF/lib/jsp-api.jar"/>
+    <mkdir dir="${artifact.output.lodmilla-backend}/WEB-INF/classes"/>
+    <copy todir="${artifact.output.lodmilla-backend}/WEB-INF/classes">
+      <fileset dir="${lodmilla-backend.output.dir}"/>
+    </copy>
+  </target>
+  
+  <target name="build.all.artifacts" depends="artifact.lodmilla-backend" description="Build all artifacts">
+    
+    <!-- Delete temporary files -->
+    <delete dir="${artifacts.temp.dir}"/>
+  </target>
+  
+  <target name="all" depends="build.modules, build.all.artifacts" description="build all"/>
+</project>
