@@ -11,7 +11,7 @@ How to set up lodmilla-backend?
 
 3. Set up Tomcat.
 
-4. Build the war and deploy it under Tomcat.
+4. Build the war and deploy it under Tomcat. If you use the pre-built war file, you need to create the default user and password for the SQL database given in backend properties. Or you can unpack the war, edit the properties file and pack it again.
 
 5. In lodmilla frontend edit profile.class.js and change this.serverProxyUrl to you newly created backend.
 
