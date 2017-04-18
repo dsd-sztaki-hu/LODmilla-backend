@@ -17,7 +17,7 @@ How to set up lodmilla-backend?
 
 The code is not very clean. Volunteers are welcome to improve it.
 No liability for any loss or damage suffered as a result of the use of this code.
-Please refer/cite to the authors when re-using this code:
+Please refer/cite the authors when re-using this code:
 
 http://eprints.sztaki.hu/8054/
 Micsik, András and Turbucz, Sándor and Tóth, Zoltán (2015) Exploring publication metadata graphs with the LODmilla browser and editor.
